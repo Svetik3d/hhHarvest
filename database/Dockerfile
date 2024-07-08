@@ -1,0 +1,4 @@
+FROM postgres:latest
+ENV POSTGRES_PASSWORD=пароль
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_DB=summertime_practice

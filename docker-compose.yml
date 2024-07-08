@@ -1,0 +1,18 @@
+services:
+    app:
+      build:
+        dockerfile: ./Dockerfile
+      depends_on:
+        - postgres
+      command: bash -c 'python ./tg_bot.py'
+      ports:
+        - 8000:8000
+      restart: always
+
+    postgres:
+      image: postgres:latest
+      build:
+        dockerfile: ./database/Dockerfile
+      ports:
+        - 5432:5432
+      restart: always
