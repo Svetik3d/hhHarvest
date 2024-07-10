@@ -12,7 +12,7 @@ def form_to_str(data: data_models.Data):
 def save_to_file(datas):
     result_str = ""
     if type(datas[0]) == int:
-        result_str = "Вакансии по вашему запросу не найдены"
+        result_str = "Вакансии по вашему запросу не найдены."
         chat_id = datas[0]
     else:
         for i in range(len(datas)):

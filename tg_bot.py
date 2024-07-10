@@ -1,5 +1,4 @@
 import telebot
-#from telebot import types
 import data_models
 from database import db_scripts
 import my_parser
@@ -12,6 +11,7 @@ active_requests_search = []
 
 @botTimeWeb.message_handler(commands=['start'])
 def startBot(message):
+    db_scripts.init_t()
     first_mess = texts.start_text
     botTimeWeb.send_message(message.chat.id, first_mess, parse_mode='html')
 

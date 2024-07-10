@@ -1,18 +1,23 @@
 services:
-    app:
+    fastapi:
       build:
         dockerfile: ./Dockerfile
       depends_on:
         - postgres
-      command: bash -c 'python ./tg_bot.py'
+      command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; python3 tg_bot.py'
       ports:
         - 8000:8000
       restart: always
 
     postgres:
       image: postgres:latest
+      shm_size: 400mb
       build:
         dockerfile: ./database/Dockerfile
       ports:
         - 5432:5432
       restart: always
+      environment:
+        - POSTGRES_DB=summertime_practice
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=пароль

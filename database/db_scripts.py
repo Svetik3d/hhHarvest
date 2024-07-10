@@ -12,6 +12,22 @@ db_config = {
     'port': '5432'
 }
 
+def init_t():
+    with psycopg2.connect(**db_config) as conn:
+        cursor = conn.cursor()
+        query = """CREATE TABLE IF NOT EXISTS vacancies (
+vacancy_name VARCHAR(500),
+vacancy_url VARCHAR(500) PRIMARY KEY,
+company VARCHAR(100),
+area VARCHAR(200),
+education VARCHAR(200),
+salary VARCHAR(100),
+experience VARCHAR(100),
+employment VARCHAR(100),
+description TEXT,
+key_skills TEXT);"""
+        cursor.execute(query)
+
 def save_all_data(datas):
     urls = get_urls()
     with psycopg2.connect(**db_config) as conn:
